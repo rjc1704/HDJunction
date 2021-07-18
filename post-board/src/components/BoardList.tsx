@@ -1,24 +1,25 @@
-import { useState, useEffect } from 'react';
+// import { useEffect } from 'react';
+import { addBoard, selectBoard } from '../redux/reducers/boardReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
-interface ListProps {
-  boardTitle: string;
-}
-
-const BoardList = ({ boardTitle }: ListProps) => {
-  const defaultBoard = { title: 'Title', body: null };
-  const [boardList, setBoardList] = useState([defaultBoard]);
+const BoardList = () => {
+  const dispatch = useDispatch();
+  const boardList = useSelector((state: RootState) => state.boardReducer.boardList);
   const handleAdd = () => {
-    setBoardList([...boardList, defaultBoard]);
+    dispatch(addBoard());
   };
-  useEffect(() => {
-    console.log(`boardTitle:`, boardTitle);
-  }, []);
+
+  const handleSelect = (id: number) => {
+    dispatch(selectBoard({ id }));
+  };
+
   return (
     <div id="boardListWrapper">
       <ul className="listUl">
         {boardList.map((board, idx) => {
           return (
-            <li className="boardList" key={idx}>
+            <li className="boardList" key={idx} onClick={() => handleSelect(idx)}>
               {board.title} {idx}
             </li>
           );

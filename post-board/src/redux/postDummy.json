@@ -1,0 +1,10 @@
+{
+  "boardList": [
+    {
+      "id": 0,
+      "title": "New Board",
+      "postList": []
+    }
+  ],
+  "selectedId": 0
+}
