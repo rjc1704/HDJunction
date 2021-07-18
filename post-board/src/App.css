@@ -1,0 +1,160 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+#pageWrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+#boardListWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #bdbdbd;
+  margin: 0;
+  padding-top: 1em;
+  width: 10%;
+}
+
+.listUl {
+  display: flex;
+  flex-direction: column;
+}
+
+.plusSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.plusBtn {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#boardContentsWrapper {
+  flex-grow: 6;
+  background-size: 10px, 30px, 10px 10px, 30px 30px;
+  background-image: linear-gradient(90deg, #00000004 1px, transparent 1px), linear-gradient(90deg, #00000004 1px, transparent 1px),
+    linear-gradient(#00000004 1px, transparent 1px), linear-gradient(#00000004 1px, transparent 1px);
+  display: flex;
+  flex-direction: column;
+  padding-top: 1em;
+}
+.boardName {
+  font-size: 1rem;
+  font-weight: bold;
+  height: 2em;
+  width: 100%;
+  margin-left: 1em;
+}
+
+.contentsArea {
+  width: 100%;
+  height: 100vh;
+}
+
+.postItWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 13em;
+  min-height: 3em;
+}
+
+.postItHeader {
+  background-color: #9e9e9e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+}
+
+.iconWrapper {
+  margin-right: 5px;
+  padding-top: 4px;
+}
+
+.title {
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.postItBody {
+  background-color: #ffffff;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 0;
+  margin: 0;
+  height: 6em;
+}
+
+.postTexts {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hideIcon {
+  cursor: pointer;
+}
+
+.closeIcon {
+  margin-left: 3px;
+  cursor: pointer;
+}
+
+.titleForm {
+  display: flex;
+  width: 100%;
+}
+
+.titleInput {
+  width: 50%;
+}
+
+.boardList {
+  cursor: pointer;
+}
+
+.boardList:hover {
+  color: #ffffff;
+  background-color: black;
+}
