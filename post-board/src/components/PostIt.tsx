@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useRef, useEffect, useState, ChangeEvent } from 'react';
+import { useRef, useEffect, useState, ChangeEvent, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { changeBodyText, changeHeaderTitle, deletePost } from '../redux/reducers/boardReducer';
 import Modal from './Modal';
@@ -89,7 +89,7 @@ const PostIt = ({ id, header, body, xValue, yValue, isModi }: PostItProps) => {
           />
         </form>
       )}
-      <textarea className="postItBody" ref={bodyRef} onMouseMove={resizeWidth} onChange={handleBodyChange} value={body} />
+      <textarea className="postItBody" ref={bodyRef} onMouseMove={resizeWidth} onChange={handleBodyChange} defaultValue={body} />
       {isOpenModal ? (
         <Modal
           close={closeModal}
@@ -103,4 +103,4 @@ const PostIt = ({ id, header, body, xValue, yValue, isModi }: PostItProps) => {
   );
 };
 
-export default PostIt;
+export default memo(PostIt);
