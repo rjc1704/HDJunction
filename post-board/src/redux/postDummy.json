@@ -6,5 +6,6 @@
       "postList": []
     }
   ],
-  "selectedId": 0
+  "selectedId": 0,
+  "selectedPostId": 0
 }

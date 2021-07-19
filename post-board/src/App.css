@@ -146,14 +146,25 @@
 .titleForm {
   display: flex;
   width: 100%;
+  padding-left: 1em;
+}
+
+.headerForm {
+  display: flex;
+  width: 100%;
 }
 
 .titleInput {
   width: 50%;
 }
 
+.headerInput {
+  width: 100%;
+}
+
 .boardList {
   cursor: pointer;
+  margin: 0 10px;
 }
 
 .boardList:hover {

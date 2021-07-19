@@ -16,15 +16,15 @@ const BoardList = () => {
 
   return (
     <div id="boardListWrapper">
-      <ul className="listUl">
+      <div className="listUl">
         {boardList.map((board, idx) => {
           return (
-            <li className="boardList" key={idx} onClick={() => handleSelect(idx)}>
-              {board.title} {idx}
-            </li>
+            <div className="boardList" key={idx} onClick={() => handleSelect(idx)}>
+              <span>-</span> {board.title}
+            </div>
           );
         })}
-      </ul>
+      </div>
       <section className="plusSection">
         <div className="plusBtn" onClick={handleAdd}>
           +
