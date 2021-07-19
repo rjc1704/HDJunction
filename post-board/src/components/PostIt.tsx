@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useEffect, useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeBodyText, changeHeaderTitle } from '../redux/reducers/boardReducer';
+import { changeBodyText, changeHeaderTitle, deletePost } from '../redux/reducers/boardReducer';
+import Modal from './Modal';
 
 interface PostItProps {
   id: number;
@@ -21,6 +22,7 @@ const PostIt = ({ id, header, body, xValue, yValue, isModi }: PostItProps) => {
   const [isHeaderRevision, setIsHeaderRevision] = useState(isModi);
   const [description, setDescription] = useState('');
   const [bodyText, setBodyText] = useState('');
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const handleBodyChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setBodyText(e.target.value);
   };
@@ -49,6 +51,13 @@ const PostIt = ({ id, header, body, xValue, yValue, isModi }: PostItProps) => {
     console.log(`e.target.value: `, e.target.value);
     setDescription(e.target.value);
   };
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
+  const openModal = () => {
+    setIsOpenModal(true);
+  };
+
   return (
     <div className="postItWrapper" style={postStyle}>
       {!isHeaderRevision ? (
@@ -58,7 +67,7 @@ const PostIt = ({ id, header, body, xValue, yValue, isModi }: PostItProps) => {
           </div>
           <div className="iconWrapper">
             <FontAwesomeIcon icon="minus-square" className="hideIcon" />
-            <FontAwesomeIcon icon="window-close" className="closeIcon" />
+            <FontAwesomeIcon icon="window-close" className="closeIcon" onClick={openModal} />
           </div>
         </header>
       ) : (
@@ -81,6 +90,15 @@ const PostIt = ({ id, header, body, xValue, yValue, isModi }: PostItProps) => {
         </form>
       )}
       <textarea className="postItBody" ref={bodyRef} onMouseMove={resizeWidth} onChange={handleBodyChange} value={body} />
+      {isOpenModal ? (
+        <Modal
+          close={closeModal}
+          title="정말 삭제하시겠습니까?"
+          btnText1="예"
+          btnText2="아니오"
+          callback={() => dispatch(deletePost({ id }))}
+        />
+      ) : null}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { RootState } from '../redux/store';
 const BoardList = () => {
   const dispatch = useDispatch();
   const boardList = useSelector((state: RootState) => state.boardReducer.boardList);
+  const selectedId = useSelector((state: RootState) => state.boardReducer.selectedId);
   const handleAdd = () => {
     dispatch(addBoard());
   };
@@ -14,14 +15,32 @@ const BoardList = () => {
     dispatch(selectBoard({ id }));
   };
 
+  interface BoardProps {
+    color: string;
+    background: string;
+  }
+
+  const boardStyle: BoardProps = {
+    color: '#ffffff',
+    background: 'black',
+  };
+
   return (
     <div id="boardListWrapper">
       <div className="listUl">
         {boardList.map((board, idx) => {
           return (
-            <div className="boardList" key={idx} onClick={() => handleSelect(idx)}>
-              <span>-</span> {board.title}
-            </div>
+            <>
+              {selectedId === board.id ? (
+                <div className="boardList" style={boardStyle} key={idx} onClick={() => handleSelect(idx)}>
+                  <span>-</span> {board.title}
+                </div>
+              ) : (
+                <div className="boardList" key={idx} onClick={() => handleSelect(idx)}>
+                  <span>-</span> {board.title}
+                </div>
+              )}
+            </>
           );
         })}
       </div>

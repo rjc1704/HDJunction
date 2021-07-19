@@ -56,6 +56,12 @@ interface IBody {
   };
 }
 
+interface IDelete {
+  payload: {
+    id: number;
+  };
+}
+
 const boardReducer = createSlice({
   name: 'boardReducer',
   initialState: dummy as IState,
@@ -89,8 +95,15 @@ const boardReducer = createSlice({
     changeBodyText(state, action: IBody) {
       state.boardList[state.selectedId].postList[action.payload.id].body = action.payload.body;
     },
+    deletePost(state, action: IDelete) {
+      const idx = state.boardList[state.selectedId].postList.findIndex((post) => post.id === action.payload.id);
+      state.boardList[state.selectedId].postList = [
+        ...state.boardList[state.selectedId].postList.slice(0, idx),
+        ...state.boardList[state.selectedId].postList.slice(idx + 1),
+      ];
+    },
   },
 });
 
-export const { addBoard, selectBoard, addPost, changeTitle, changeHeaderTitle, changeBodyText } = boardReducer.actions;
+export const { addBoard, selectBoard, addPost, changeTitle, changeHeaderTitle, changeBodyText, deletePost } = boardReducer.actions;
 export default boardReducer.reducer;
